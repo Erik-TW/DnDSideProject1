@@ -7,5 +7,6 @@
     [InitiativeBonus] INT NULL, 
     [PC] TINYINT NOT NULL, 
     [Type] NVARCHAR(50) NULL, 
-    [CR] FLOAT NULL
+    [CR] FLOAT NULL, 
+    [Test1] NCHAR(10) NULL
 )
