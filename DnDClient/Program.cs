@@ -18,6 +18,7 @@ namespace DnDClient
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("I wish many dabs on you sir.");
         }
     }
