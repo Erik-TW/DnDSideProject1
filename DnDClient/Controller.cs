@@ -16,7 +16,12 @@ namespace DnDClient
         public List<Character> AddToCombatList(Character character)
         {
             combatList.Add(character);
-            return combatList;
+            List<Character> temp = new List<Character>();
+            for (int i = 0; i < combatList.Count; i++)
+            {
+                temp.Add(combatList[i]);
+            }
+            return temp;
         }
     }
 }
