@@ -67,6 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Publish\MonsterManualDB_Karl.publish.xml" />
-    <None Include="CharacterDB.publish.xml" />
+    <None Include="Publish\MonsterManual_Erik.publish.xml" />
   </ItemGroup>
 </Project>
