@@ -66,6 +66,6 @@
     <RefactorLog Include="CharacterDB.refactorlog" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Publish\CharacterDB_Karl.publish.xml" />
+    <None Include="Publish\MonsterManualDB_Karl.publish.xml" />
   </ItemGroup>
 </Project>
