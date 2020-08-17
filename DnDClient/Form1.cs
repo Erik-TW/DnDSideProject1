@@ -26,5 +26,9 @@ namespace DnDClient
         {
 
         }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+        }
     }
 }
