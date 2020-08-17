@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Table\Character.sql" />
+    <Build Include="Table\TestTable.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CharacterDB.refactorlog" />
