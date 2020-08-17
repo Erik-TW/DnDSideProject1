@@ -12,18 +12,36 @@ namespace DnDClient
 {
     public partial class Form1 : Form
     {
-        DBAccess dbConnection = new DBAccess();
+        Controller controller = new Controller();
+        List<Character> monsters = new List<Character>();
         public Form1()
         {
             InitializeComponent();
+        }
+        private void RefreshSearchListBox()
+        {
+            SearchListBox.DataSource = monsters;
+            SearchListBox.DisplayMember = "SearchInfo";
+        }
+
+        private void RefreshEncounterListBox(List<Character> characters)
+        {
+            EncounterListBox.DataSource = characters;
+            EncounterListBox.DisplayMember = "CombatInfo";
         }
 
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-           List<Character> monsters =  dbConnection.GetMonsters();
-            SearchListBox.DataSource = monsters;
-            SearchListBox.DisplayMember = "SearchInfo";
+            string searchText = SearchTextBox.Text;
+            monsters =  controller.Search(searchText);
+            RefreshSearchListBox();
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            Character markedCharacter = (Character)SearchListBox.SelectedItem;
+            RefreshEncounterListBox(controller.AddToCombatList(markedCharacter));
         }
     }
 }
