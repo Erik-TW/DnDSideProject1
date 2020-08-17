@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 using Dapper;
 
@@ -8,13 +9,13 @@ namespace DnDClient
 {
     class DBAccess
     {
-        public string getMonsters()
+        public List<Character> GetMonsters()
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(ConnectionStrings.GetConnectionString("MonsterManualDb")))
             {
-                connection.Query("select * from Character;");
+                return connection.Query<Character>("select * from Character;").ToList();
             }
-                return "";
+             
         }
     }
 }

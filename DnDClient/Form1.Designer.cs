@@ -48,7 +48,6 @@
             this.SearchListBox.Name = "SearchListBox";
             this.SearchListBox.Size = new System.Drawing.Size(330, 274);
             this.SearchListBox.TabIndex = 0;
-            this.SearchListBox.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // EncounterListBox
             // 
@@ -91,7 +90,6 @@
             this.AddButton.TabIndex = 3;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
-            this.AddButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // HealButton
             // 

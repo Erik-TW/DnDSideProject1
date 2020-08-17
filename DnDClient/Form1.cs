@@ -12,23 +12,18 @@ namespace DnDClient
 {
     public partial class Form1 : Form
     {
+        DBAccess dbConnection = new DBAccess();
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
+           List<Character> monsters =  dbConnection.GetMonsters();
+            SearchListBox.DataSource = monsters;
+            SearchListBox.DisplayMember = "SearchInfo";
         }
     }
 }
