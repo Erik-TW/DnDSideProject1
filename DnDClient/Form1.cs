@@ -41,7 +41,7 @@ namespace DnDClient
         private void AddButton_Click(object sender, EventArgs e)
         {
             Character markedCharacter = (Character)SearchListBox.SelectedItem;
-            RefreshEncounterListBox(controller.AddToCombatList(markedCharacter));
+            RefreshEncounterListBox(controller.AddToCombatList(CopyCharacter(markedCharacter)));
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
@@ -81,7 +81,43 @@ namespace DnDClient
 
         private void RollInitiativeButton_Click(object sender, EventArgs e)
         {
-            controller.RollInitiative();
+            RefreshEncounterListBox(controller.RollInitiative());
+
+        }
+
+        private Character CopyCharacter(Character character) 
+        {
+            Character newchar = new Character();
+
+            return new Character
+            {
+                Id = character.Id,
+                Name = character.Name,
+                MaxHp = character.MaxHp,
+                AC = character.AC,
+                InitiativeBonus = character.InitiativeBonus,
+                PC = character.PC,
+                Type = character.Type,
+                CR = character.CR,
+                Initiative = character.Initiative,
+                CurrentHp = character.CurrentHp
+            };
+        }
+
+        private void InitiativeButton_Click(object sender, EventArgs e)
+        {
+
+
+            int initiative = 0;
+            if (Int32.TryParse(ModifierTextBox.Text, out initiative))
+            {
+                RefreshEncounterListBox(controller.SetInitiative(EncounterListBox.SelectedIndex, initiative));
+            }
+            else
+            {
+                MessageBox.Show("Invalid input");
+            }
+
 
         }
     }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace DnDClient
 {
@@ -49,16 +51,25 @@ namespace DnDClient
         public List<Character> RollInitiative()
         {
             Random rand = new Random();
-            foreach (Character character in combatList)
+            for (int i = 0; i < combatList.Count; i++)
             {
-                character.Initiative = rand.Next(1, 20) + character.InitiativeBonus;
+                if (!combatList[i].PC)
+                {
+                    combatList[i].Initiative = rand.Next(0, 20) + combatList[i].InitiativeBonus;
+                }
             }
+            return GenerateTempList();
+        }
 
+        public List<Character> SetInitiative(int index, int initiative)
+        {
+            combatList[index].Initiative = initiative;
             return GenerateTempList();
         }
 
         private List<Character> GenerateTempList()
         {
+            combatList = combatList.OrderByDescending(o => o.Initiative).ToList();
             List<Character> temp = new List<Character>();
             for (int i = 0; i < combatList.Count; i++)
             {

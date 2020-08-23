@@ -45,37 +45,37 @@
             // 
             this.SearchListBox.FormattingEnabled = true;
             this.SearchListBox.ItemHeight = 15;
-            this.SearchListBox.Location = new System.Drawing.Point(40, 39);
+            this.SearchListBox.Location = new System.Drawing.Point(12, 12);
             this.SearchListBox.Name = "SearchListBox";
-            this.SearchListBox.Size = new System.Drawing.Size(330, 274);
+            this.SearchListBox.Size = new System.Drawing.Size(762, 124);
             this.SearchListBox.TabIndex = 0;
             // 
             // EncounterListBox
             // 
             this.EncounterListBox.FormattingEnabled = true;
             this.EncounterListBox.ItemHeight = 15;
-            this.EncounterListBox.Location = new System.Drawing.Point(437, 39);
+            this.EncounterListBox.Location = new System.Drawing.Point(12, 157);
             this.EncounterListBox.Name = "EncounterListBox";
-            this.EncounterListBox.Size = new System.Drawing.Size(330, 274);
+            this.EncounterListBox.Size = new System.Drawing.Size(762, 199);
             this.EncounterListBox.TabIndex = 0;
             // 
             // SearchTextBox
             // 
-            this.SearchTextBox.Location = new System.Drawing.Point(86, 363);
+            this.SearchTextBox.Location = new System.Drawing.Point(32, 386);
             this.SearchTextBox.Name = "SearchTextBox";
             this.SearchTextBox.Size = new System.Drawing.Size(177, 23);
             this.SearchTextBox.TabIndex = 1;
             // 
             // ModifierTextBox
             // 
-            this.ModifierTextBox.Location = new System.Drawing.Point(482, 362);
+            this.ModifierTextBox.Location = new System.Drawing.Point(482, 386);
             this.ModifierTextBox.Name = "ModifierTextBox";
             this.ModifierTextBox.Size = new System.Drawing.Size(177, 23);
             this.ModifierTextBox.TabIndex = 1;
             // 
             // SearchButton
             // 
-            this.SearchButton.Location = new System.Drawing.Point(86, 415);
+            this.SearchButton.Location = new System.Drawing.Point(32, 415);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(75, 23);
             this.SearchButton.TabIndex = 2;
@@ -85,7 +85,7 @@
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(188, 415);
+            this.AddButton.Location = new System.Drawing.Point(134, 415);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(75, 23);
             this.AddButton.TabIndex = 3;
@@ -115,7 +115,7 @@
             // 
             // RemoveButton
             // 
-            this.RemoveButton.Location = new System.Drawing.Point(689, 362);
+            this.RemoveButton.Location = new System.Drawing.Point(678, 385);
             this.RemoveButton.Name = "RemoveButton";
             this.RemoveButton.Size = new System.Drawing.Size(85, 23);
             this.RemoveButton.TabIndex = 6;
@@ -125,18 +125,19 @@
             // 
             // InitiativeButton
             // 
-            this.InitiativeButton.Location = new System.Drawing.Point(689, 415);
+            this.InitiativeButton.Location = new System.Drawing.Point(678, 415);
             this.InitiativeButton.Name = "InitiativeButton";
             this.InitiativeButton.Size = new System.Drawing.Size(85, 23);
             this.InitiativeButton.TabIndex = 7;
             this.InitiativeButton.Text = "Set Initiative";
             this.InitiativeButton.UseVisualStyleBackColor = true;
+            this.InitiativeButton.Click += new System.EventHandler(this.InitiativeButton_Click);
             // 
             // RollInitiativeButton
             // 
-            this.RollInitiativeButton.Location = new System.Drawing.Point(529, 319);
+            this.RollInitiativeButton.Location = new System.Drawing.Point(321, 362);
             this.RollInitiativeButton.Name = "RollInitiativeButton";
-            this.RollInitiativeButton.Size = new System.Drawing.Size(96, 23);
+            this.RollInitiativeButton.Size = new System.Drawing.Size(92, 30);
             this.RollInitiativeButton.TabIndex = 8;
             this.RollInitiativeButton.Text = "Roll Initiative";
             this.RollInitiativeButton.UseVisualStyleBackColor = true;

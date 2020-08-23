@@ -22,13 +22,13 @@ namespace DnDClient
         {
             get 
             { 
-                return $"name: { Name } max hp: { MaxHp } current hp: { CurrentHp } AC: { AC } Initiative: { Initiative}";
+                return $"Name: { Name } Current HP: { CurrentHp } AC: { AC } Initiative: { Initiative}";
             }
         }
 
         public string SearchInfo
         {
-            get { return $"name: { Name } max hp: { MaxHp } AC: { AC } Initiative: { InitiativeBonus} PC: {PC} Type: { Type } CR: { CR } "; }
+            get { return $"Name: { Name } Max HP: { MaxHp } AC: { AC } Initiative: { InitiativeBonus} PC: {PC} Type: { Type } CR: { CR } "; }
             
         }
 
