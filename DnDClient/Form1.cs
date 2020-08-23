@@ -43,5 +43,27 @@ namespace DnDClient
             Character markedCharacter = (Character)SearchListBox.SelectedItem;
             RefreshEncounterListBox(controller.AddToCombatList(markedCharacter));
         }
+
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            RefreshEncounterListBox(controller.RemoveFromCombatList(EncounterListBox.SelectedIndex));
+
+        }
+
+        private void DamageButton_Click(object sender, EventArgs e)
+
+        {
+            int damage = 0;
+            if (Int32.TryParse(ModifierTextBox.Text, out damage))
+            {
+                RefreshEncounterListBox(controller.DealDamage(EncounterListBox.SelectedIndex, damage));
+            }
+            else
+            {
+                MessageBox.Show("Invalid input");
+            }
+
+           
+        }
     }
 }

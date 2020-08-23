@@ -109,6 +109,7 @@
             this.DamageButton.TabIndex = 5;
             this.DamageButton.Text = "Damage";
             this.DamageButton.UseVisualStyleBackColor = true;
+            this.DamageButton.Click += new System.EventHandler(this.DamageButton_Click);
             // 
             // RemoveButton
             // 
@@ -118,6 +119,7 @@
             this.RemoveButton.TabIndex = 6;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = true;
+            this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
             // InitiativeButton
             // 
