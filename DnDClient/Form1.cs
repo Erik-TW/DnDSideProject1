@@ -65,5 +65,24 @@ namespace DnDClient
 
            
         }
+
+        private void HealButton_Click(object sender, EventArgs e)
+        {
+            int heal = 0;
+            if (Int32.TryParse(ModifierTextBox.Text, out heal))
+            {
+                RefreshEncounterListBox(controller.HealCharacter(EncounterListBox.SelectedIndex, heal));
+            }
+            else
+            {
+                MessageBox.Show("Invalid input");
+            }
+        }
+
+        private void RollInitiativeButton_Click(object sender, EventArgs e)
+        {
+            controller.RollInitiative();
+
+        }
     }
 }

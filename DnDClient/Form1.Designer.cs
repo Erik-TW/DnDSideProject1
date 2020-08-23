@@ -38,6 +38,7 @@
             this.DamageButton = new System.Windows.Forms.Button();
             this.RemoveButton = new System.Windows.Forms.Button();
             this.InitiativeButton = new System.Windows.Forms.Button();
+            this.RollInitiativeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // SearchListBox
@@ -100,6 +101,7 @@
             this.HealButton.TabIndex = 4;
             this.HealButton.Text = "Heal";
             this.HealButton.UseVisualStyleBackColor = true;
+            this.HealButton.Click += new System.EventHandler(this.HealButton_Click);
             // 
             // DamageButton
             // 
@@ -130,11 +132,22 @@
             this.InitiativeButton.Text = "Set Initiative";
             this.InitiativeButton.UseVisualStyleBackColor = true;
             // 
+            // RollInitiativeButton
+            // 
+            this.RollInitiativeButton.Location = new System.Drawing.Point(529, 319);
+            this.RollInitiativeButton.Name = "RollInitiativeButton";
+            this.RollInitiativeButton.Size = new System.Drawing.Size(96, 23);
+            this.RollInitiativeButton.TabIndex = 8;
+            this.RollInitiativeButton.Text = "Roll Initiative";
+            this.RollInitiativeButton.UseVisualStyleBackColor = true;
+            this.RollInitiativeButton.Click += new System.EventHandler(this.RollInitiativeButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.RollInitiativeButton);
             this.Controls.Add(this.InitiativeButton);
             this.Controls.Add(this.RemoveButton);
             this.Controls.Add(this.DamageButton);
@@ -164,6 +177,7 @@
         private System.Windows.Forms.Button DamageButton;
         private System.Windows.Forms.Button RemoveButton;
         private System.Windows.Forms.Button InitiativeButton;
+        private System.Windows.Forms.Button RollInitiativeButton;
     }
 }
 
