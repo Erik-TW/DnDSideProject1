@@ -17,19 +17,28 @@ namespace DnDClient
         public int Initiative { get; set; }
         public int CurrentHp { get; set; }
 
+        private int _Index = 1;
+
+        public int Index
+        {
+            get { return _Index; }
+            set { _Index = value; }
+        }
+
+
+
 
         public string CombatInfo
         {
             get 
             { 
-                return $"Name: { Name } Current HP: { CurrentHp } AC: { AC } Initiative: { Initiative}";
+                return $"{ Name } {Index} Current HP: { CurrentHp } AC: { AC } Initiative: { Initiative}";
             }
         }
 
         public string SearchInfo
         {
-            get { return $"Name: { Name } Max HP: { MaxHp } AC: { AC } Initiative: { InitiativeBonus} PC: {PC} Type: { Type } CR: { CR } "; }
-            
+            get { return $"{ Name } Max HP: { MaxHp } AC: { AC } Initiative: { InitiativeBonus} PC: {PC} Type: { Type } CR: { CR } "; }
         }
 
 

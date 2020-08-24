@@ -39,24 +39,27 @@
             this.RemoveButton = new System.Windows.Forms.Button();
             this.InitiativeButton = new System.Windows.Forms.Button();
             this.RollInitiativeButton = new System.Windows.Forms.Button();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // SearchListBox
             // 
+            this.SearchListBox.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.SearchListBox.FormattingEnabled = true;
-            this.SearchListBox.ItemHeight = 15;
+            this.SearchListBox.ItemHeight = 25;
             this.SearchListBox.Location = new System.Drawing.Point(12, 12);
             this.SearchListBox.Name = "SearchListBox";
-            this.SearchListBox.Size = new System.Drawing.Size(762, 124);
+            this.SearchListBox.Size = new System.Drawing.Size(762, 104);
             this.SearchListBox.TabIndex = 0;
             // 
             // EncounterListBox
             // 
+            this.EncounterListBox.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.EncounterListBox.FormattingEnabled = true;
-            this.EncounterListBox.ItemHeight = 15;
+            this.EncounterListBox.ItemHeight = 25;
             this.EncounterListBox.Location = new System.Drawing.Point(12, 157);
             this.EncounterListBox.Name = "EncounterListBox";
-            this.EncounterListBox.Size = new System.Drawing.Size(762, 199);
+            this.EncounterListBox.Size = new System.Drawing.Size(762, 179);
             this.EncounterListBox.TabIndex = 0;
             // 
             // SearchTextBox
@@ -135,7 +138,7 @@
             // 
             // RollInitiativeButton
             // 
-            this.RollInitiativeButton.Location = new System.Drawing.Point(321, 362);
+            this.RollInitiativeButton.Location = new System.Drawing.Point(320, 355);
             this.RollInitiativeButton.Name = "RollInitiativeButton";
             this.RollInitiativeButton.Size = new System.Drawing.Size(92, 30);
             this.RollInitiativeButton.TabIndex = 8;
@@ -143,11 +146,23 @@
             this.RollInitiativeButton.UseVisualStyleBackColor = true;
             this.RollInitiativeButton.Click += new System.EventHandler(this.RollInitiativeButton_Click);
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(381, 447);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(94, 19);
+            this.radioButton1.TabIndex = 9;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "radioButton1";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.RollInitiativeButton);
             this.Controls.Add(this.InitiativeButton);
             this.Controls.Add(this.RemoveButton);
@@ -161,6 +176,7 @@
             this.Controls.Add(this.SearchListBox);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,6 +195,7 @@
         private System.Windows.Forms.Button RemoveButton;
         private System.Windows.Forms.Button InitiativeButton;
         private System.Windows.Forms.Button RollInitiativeButton;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
 

@@ -17,6 +17,19 @@ namespace DnDClient
 
         public List<Character> AddToCombatList(Character character)
         {
+            int index = 0;
+            for(int i = 0; i < combatList.Count; i++)
+            {
+                if(combatList[i].Id == character.Id)
+                {
+                    if(index < combatList[i].Index)
+                    {
+                        index = combatList[i].Index;
+                    }
+                }
+            }
+            index++; 
+            character.Index = index;
             combatList.Add(character);
             character.CurrentHp = character.MaxHp;
             return GenerateTempList();
@@ -76,6 +89,12 @@ namespace DnDClient
                 temp.Add(combatList[i]);
             }
             return temp;
+        }
+
+        public List<Character> ResetEncounter()
+        {
+            combatList.Clear();
+            return GenerateTempList();
         }
     }
 }
