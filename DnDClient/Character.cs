@@ -32,7 +32,11 @@ namespace DnDClient
         {
             get 
             { 
-                return $"{ Name } {Index} Current HP: { CurrentHp } AC: { AC } Initiative: { Initiative}";
+                if(PC)
+                {
+                    return $"{ Name } HP: { CurrentHp } AC: { AC } Initiative: { Initiative}";
+                }
+                return $"{ Name } {Index} HP: { CurrentHp } AC: { AC } Initiative: { Initiative}";
             }
         }
 
