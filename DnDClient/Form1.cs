@@ -42,42 +42,51 @@ namespace DnDClient
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            Character markedCharacter = (Character)SearchListBox.SelectedItem;
-            RefreshEncounterListBox(controller.AddToCombatList(CopyCharacter(markedCharacter)));
+            if (SearchListBox.SelectedIndex >= 0)
+            {
+                Character markedCharacter = (Character)SearchListBox.SelectedItem;
+                RefreshEncounterListBox(controller.AddToCombatList(CopyCharacter(markedCharacter)));
+            }
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            RefreshEncounterListBox(controller.RemoveFromCombatList(EncounterListBox.SelectedIndex));
+            if (EncounterListBox.SelectedIndex >= 0)
+            {
+                RefreshEncounterListBox(controller.RemoveFromCombatList(EncounterListBox.SelectedIndex));
+            }
 
         }
 
         private void DamageButton_Click(object sender, EventArgs e)
-
         {
-            int damage = 0;
-            if (Int32.TryParse(ModifierTextBox.Text, out damage))
+            if (EncounterListBox.SelectedIndex >= 0)
             {
-                RefreshEncounterListBox(controller.DealDamage(EncounterListBox.SelectedIndex, damage));
+                int damage = 0;
+                if (Int32.TryParse(ModifierTextBox.Text, out damage))
+                {
+                    RefreshEncounterListBox(controller.DealDamage(EncounterListBox.SelectedIndex, damage));
+                }
+                else
+                {
+                    MessageBox.Show("Invalid input");
+                }
             }
-            else
-            {
-                MessageBox.Show("Invalid input");
-            }
-
-           
         }
 
         private void HealButton_Click(object sender, EventArgs e)
         {
-            int heal = 0;
-            if (Int32.TryParse(ModifierTextBox.Text, out heal))
+            if (EncounterListBox.SelectedIndex >= 0)
             {
-                RefreshEncounterListBox(controller.HealCharacter(EncounterListBox.SelectedIndex, heal));
-            }
-            else
-            {
-                MessageBox.Show("Invalid input");
+                int heal = 0;
+                if (Int32.TryParse(ModifierTextBox.Text, out heal))
+                {
+                    RefreshEncounterListBox(controller.HealCharacter(EncounterListBox.SelectedIndex, heal));
+                }
+                else
+                {
+                    MessageBox.Show("Invalid input");
+                }
             }
         }
 
@@ -109,18 +118,18 @@ namespace DnDClient
         private void InitiativeButton_Click(object sender, EventArgs e)
         {
 
-
-            int initiative = 0;
-            if (Int32.TryParse(ModifierTextBox.Text, out initiative))
+            if (EncounterListBox.SelectedIndex >= 0)
             {
-                RefreshEncounterListBox(controller.SetInitiative(EncounterListBox.SelectedIndex, initiative));
+                int initiative = 0;
+                if (Int32.TryParse(ModifierTextBox.Text, out initiative))
+                {
+                    RefreshEncounterListBox(controller.SetInitiative(EncounterListBox.SelectedIndex, initiative));
+                }
+                else
+                {
+                    MessageBox.Show("Invalid input");
+                }
             }
-            else
-            {
-                MessageBox.Show("Invalid input");
-            }
-
-
         }
 
         private void ResetButton_Click(object sender, EventArgs e)
