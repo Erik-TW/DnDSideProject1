@@ -26,8 +26,10 @@ namespace DnDClient
 
         private void RefreshEncounterListBox(List<Character> characters)
         {
+            var index = EncounterListBox.SelectedIndex;
             EncounterListBox.DataSource = characters;
             EncounterListBox.DisplayMember = "CombatInfo";
+            EncounterListBox.SelectedIndex = Math.Min(index, characters.Count - 1);
         }
 
 
