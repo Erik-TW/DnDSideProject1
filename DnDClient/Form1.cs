@@ -42,26 +42,17 @@ namespace DnDClient
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            if (SearchListBox.SelectedIndex >= 0)
-            {
                 Character markedCharacter = (Character)SearchListBox.SelectedItem;
-                RefreshEncounterListBox(controller.AddToCombatList(CopyCharacter(markedCharacter)));
-            }
+                RefreshEncounterListBox(controller.AddToCombatList(markedCharacter));
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            if (EncounterListBox.SelectedIndex >= 0)
-            {
                 RefreshEncounterListBox(controller.RemoveFromCombatList(EncounterListBox.SelectedIndex));
-            }
-
         }
 
         private void DamageButton_Click(object sender, EventArgs e)
         {
-            if (EncounterListBox.SelectedIndex >= 0)
-            {
                 int damage = 0;
                 if (Int32.TryParse(ModifierTextBox.Text, out damage))
                 {
@@ -71,13 +62,10 @@ namespace DnDClient
                 {
                     MessageBox.Show("Invalid input");
                 }
-            }
         }
 
         private void HealButton_Click(object sender, EventArgs e)
         {
-            if (EncounterListBox.SelectedIndex >= 0)
-            {
                 int heal = 0;
                 if (Int32.TryParse(ModifierTextBox.Text, out heal))
                 {
@@ -87,7 +75,6 @@ namespace DnDClient
                 {
                     MessageBox.Show("Invalid input");
                 }
-            }
         }
 
         private void RollInitiativeButton_Click(object sender, EventArgs e)
@@ -96,30 +83,8 @@ namespace DnDClient
 
         }
 
-        private Character CopyCharacter(Character character) 
-        {
-            Character newchar = new Character();
-
-            return new Character
-            {
-                Id = character.Id,
-                Name = character.Name,
-                MaxHp = character.MaxHp,
-                AC = character.AC,
-                InitiativeBonus = character.InitiativeBonus,
-                PC = character.PC,
-                Type = character.Type,
-                CR = character.CR,
-                Initiative = character.Initiative,
-                CurrentHp = character.CurrentHp
-            };
-        }
-
         private void InitiativeButton_Click(object sender, EventArgs e)
         {
-
-            if (EncounterListBox.SelectedIndex >= 0)
-            {
                 int initiative = 0;
                 if (Int32.TryParse(ModifierTextBox.Text, out initiative))
                 {
@@ -129,7 +94,6 @@ namespace DnDClient
                 {
                     MessageBox.Show("Invalid input");
                 }
-            }
         }
         private void ResetButton_Click(object sender, EventArgs e)
         {

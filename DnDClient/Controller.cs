@@ -17,47 +17,59 @@ namespace DnDClient
 
         public List<Character> AddToCombatList(Character character)
         {
-            int index = 0;
-            for(int i = 0; i < combatList.Count; i++)
+            if (character != null)
             {
-                if(combatList[i].Id == character.Id)
+                var tempChar = CopyCharacter(character);
+                int index = 0;
+                for (int i = 0; i < combatList.Count; i++)
                 {
-                    if(index < combatList[i].Index)
+                    if (combatList[i].Id == tempChar.Id)
                     {
-                        index = combatList[i].Index;
+                        if (index < combatList[i].Index)
+                        {
+                            index = combatList[i].Index;
+                        }
                     }
                 }
+                index++;
+                tempChar.Index = index;
+                combatList.Add(tempChar);
+                tempChar.CurrentHp = tempChar.MaxHp;
             }
-            index++; 
-            character.Index = index;
-            combatList.Add(character);
-            character.CurrentHp = character.MaxHp;
             return GenerateTempList();
         }
 
         public List<Character> RemoveFromCombatList(int characterIndex)
         {
-            combatList.RemoveAt(characterIndex);
+            if (characterIndex >= 0)
+            {
+                combatList.RemoveAt(characterIndex);
+            }
             return GenerateTempList();
         }
 
         public List<Character> DealDamage(int characterIndex, int damage)
         {
-            Character character = combatList[characterIndex];
-            int currentHp = character.CurrentHp - damage;
-            character.CurrentHp = currentHp;
+            if (characterIndex >= 0)
+            {
+                Character character = combatList[characterIndex];
+                int currentHp = character.CurrentHp - damage;
+                character.CurrentHp = currentHp;
+            }
             return GenerateTempList();
         }
 
         public List<Character> HealCharacter(int characterIndex, int heal)
         {
-            Character character = combatList[characterIndex];
-            character.CurrentHp = character.CurrentHp + heal;
-            if (character.CurrentHp > character.MaxHp)
+            if (characterIndex >= 0)
             {
-                character.CurrentHp = character.MaxHp;
+                Character character = combatList[characterIndex];
+                character.CurrentHp = character.CurrentHp + heal;
+                if (character.CurrentHp > character.MaxHp)
+                {
+                    character.CurrentHp = character.MaxHp;
+                }
             }
-
             return GenerateTempList();
         }
 
@@ -76,7 +88,10 @@ namespace DnDClient
 
         public List<Character> SetInitiative(int index, int initiative)
         {
-            combatList[index].Initiative = initiative;
+            if (index >= 0)
+            {
+                combatList[index].Initiative = initiative;
+            }
             return GenerateTempList();
         }
 
@@ -95,6 +110,25 @@ namespace DnDClient
         {
             combatList.Clear();
             return GenerateTempList();
+        }
+
+        private Character CopyCharacter(Character character)
+        {
+            Character newchar = new Character();
+
+            return new Character
+            {
+                Id = character.Id,
+                Name = character.Name,
+                MaxHp = character.MaxHp,
+                AC = character.AC,
+                InitiativeBonus = character.InitiativeBonus,
+                PC = character.PC,
+                Type = character.Type,
+                CR = character.CR,
+                Initiative = character.Initiative,
+                CurrentHp = character.CurrentHp
+            };
         }
     }
 }
