@@ -40,6 +40,7 @@
             this.InitiativeButton = new System.Windows.Forms.Button();
             this.RollInitiativeButton = new System.Windows.Forms.Button();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.ResetButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // SearchListBox
@@ -157,11 +158,22 @@
             this.radioButton1.Text = "radioButton1";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
+            // ResetButton
+            // 
+            this.ResetButton.Location = new System.Drawing.Point(320, 410);
+            this.ResetButton.Name = "ResetButton";
+            this.ResetButton.Size = new System.Drawing.Size(92, 28);
+            this.ResetButton.TabIndex = 10;
+            this.ResetButton.Text = "Reset";
+            this.ResetButton.UseVisualStyleBackColor = true;
+            this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.RollInitiativeButton);
             this.Controls.Add(this.InitiativeButton);
@@ -196,6 +208,7 @@
         private System.Windows.Forms.Button InitiativeButton;
         private System.Windows.Forms.Button RollInitiativeButton;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Button ResetButton;
     }
 }
 
