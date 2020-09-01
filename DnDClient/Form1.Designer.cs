@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SearchListBox = new System.Windows.Forms.ListBox();
             this.EncounterListBox = new System.Windows.Forms.ListBox();
             this.SearchTextBox = new System.Windows.Forms.TextBox();
             this.ModifierTextBox = new System.Windows.Forms.TextBox();
@@ -41,17 +40,13 @@
             this.RollInitiativeButton = new System.Windows.Forms.Button();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.ResetButton = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.searchTab = new System.Windows.Forms.TabPage();
+            this.SearchListBox = new System.Windows.Forms.ListBox();
+            this.addTab = new System.Windows.Forms.TabPage();
+            this.tabControl1.SuspendLayout();
+            this.searchTab.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // SearchListBox
-            // 
-            this.SearchListBox.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.SearchListBox.FormattingEnabled = true;
-            this.SearchListBox.ItemHeight = 25;
-            this.SearchListBox.Location = new System.Drawing.Point(12, 12);
-            this.SearchListBox.Name = "SearchListBox";
-            this.SearchListBox.Size = new System.Drawing.Size(762, 104);
-            this.SearchListBox.TabIndex = 0;
             // 
             // EncounterListBox
             // 
@@ -168,11 +163,52 @@
             this.ResetButton.UseVisualStyleBackColor = true;
             this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.searchTab);
+            this.tabControl1.Controls.Add(this.addTab);
+            this.tabControl1.Location = new System.Drawing.Point(13, -1);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(761, 152);
+            this.tabControl1.TabIndex = 11;
+            // 
+            // searchTab
+            // 
+            this.searchTab.Controls.Add(this.SearchListBox);
+            this.searchTab.Location = new System.Drawing.Point(4, 24);
+            this.searchTab.Name = "searchTab";
+            this.searchTab.Padding = new System.Windows.Forms.Padding(3);
+            this.searchTab.Size = new System.Drawing.Size(753, 124);
+            this.searchTab.TabIndex = 0;
+            this.searchTab.Text = "Search";
+            this.searchTab.UseVisualStyleBackColor = true;
+            // 
+            // SearchListBox
+            // 
+            this.SearchListBox.FormattingEnabled = true;
+            this.SearchListBox.ItemHeight = 15;
+            this.SearchListBox.Location = new System.Drawing.Point(-4, 0);
+            this.SearchListBox.Name = "SearchListBox";
+            this.SearchListBox.Size = new System.Drawing.Size(757, 124);
+            this.SearchListBox.TabIndex = 0;
+            // 
+            // addTab
+            // 
+            this.addTab.Location = new System.Drawing.Point(4, 24);
+            this.addTab.Name = "addTab";
+            this.addTab.Padding = new System.Windows.Forms.Padding(3);
+            this.addTab.Size = new System.Drawing.Size(753, 124);
+            this.addTab.TabIndex = 1;
+            this.addTab.Text = "Add";
+            this.addTab.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.RollInitiativeButton);
@@ -185,18 +221,17 @@
             this.Controls.Add(this.ModifierTextBox);
             this.Controls.Add(this.SearchTextBox);
             this.Controls.Add(this.EncounterListBox);
-            this.Controls.Add(this.SearchListBox);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.tabControl1.ResumeLayout(false);
+            this.searchTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox SearchListBox;
         private System.Windows.Forms.ListBox EncounterListBox;
         private System.Windows.Forms.TextBox SearchTextBox;
         private System.Windows.Forms.TextBox ModifierTextBox;
@@ -209,6 +244,10 @@
         private System.Windows.Forms.Button RollInitiativeButton;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Button ResetButton;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage searchTab;
+        private System.Windows.Forms.TabPage addTab;
+        private System.Windows.Forms.ListBox SearchListBox;
     }
 }
 
