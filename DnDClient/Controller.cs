@@ -55,6 +55,21 @@ namespace DnDClient
             return GenerateTempList();
         }
 
+        public List<int> CompareSelectedItems(List<Character> selectedPreRepaint, List<Character> selectedPostRepaint)
+        {
+            List<int> selectedIndexes = new List<int>();
+
+            for(int i = 0; i < selectedPostRepaint.Count; i++)
+            {
+                if(selectedPreRepaint.Contains(selectedPostRepaint[i])) {
+                    selectedIndexes.Add(i);
+                }
+            }
+
+            return selectedIndexes;
+            
+        }
+
         public List<Character> DealDamage(IEnumerator selectedItems, int damage)
         {
             while(selectedItems.MoveNext())

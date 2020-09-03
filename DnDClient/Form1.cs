@@ -26,10 +26,30 @@ namespace DnDClient
 
         private void RefreshEncounterListBox(List<Character> characters)
         {
-            var index = EncounterListBox.SelectedIndex;
+            List<Character> selectedPreRepaint = new List<Character>();
+            foreach(Character c in EncounterListBox.SelectedItems)
+            {
+                selectedPreRepaint.Add(c);
+            }
+
             EncounterListBox.DataSource = characters;
             EncounterListBox.DisplayMember = "CombatInfo";
-            EncounterListBox.SelectedIndex = index;
+            if(EncounterListBox.Items.Count > 0)
+            {
+                EncounterListBox.SetSelected(0, false);
+            }
+
+
+            List<Character> selectedPostRepaint = new List<Character>();
+            foreach (Character c in EncounterListBox.Items)
+            {
+                selectedPostRepaint.Add(c);
+            }
+           List<int> selected = controller.CompareSelectedItems(selectedPreRepaint, selectedPostRepaint);
+            foreach(int i in selected)
+            {
+                EncounterListBox.SetSelected(i, true);
+            }
         }
 
 
