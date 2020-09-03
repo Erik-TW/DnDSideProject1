@@ -23,7 +23,7 @@ namespace DnDClient
                 int index = 0;
                 for (int i = 0; i < combatList.Count; i++)
                 {
-                    if (combatList[i].Id == tempChar.Id)
+                    if (combatList[i].id == tempChar.id)
                     {
                         if (index < combatList[i].Index)
                         {
@@ -34,7 +34,7 @@ namespace DnDClient
                 index++;
                 tempChar.Index = index;
                 combatList.Add(tempChar);
-                tempChar.CurrentHp = tempChar.MaxHp;
+                tempChar.currentHp = tempChar.maxHp;
             }
             return GenerateTempList();
         }
@@ -53,8 +53,8 @@ namespace DnDClient
             if (characterIndex >= 0)
             {
                 Character character = combatList[characterIndex];
-                int currentHp = character.CurrentHp - damage;
-                character.CurrentHp = currentHp;
+                int currentHp = character.currentHp - damage;
+                character.currentHp = currentHp;
             }
             return GenerateTempList();
         }
@@ -64,10 +64,10 @@ namespace DnDClient
             if (characterIndex >= 0)
             {
                 Character character = combatList[characterIndex];
-                character.CurrentHp = character.CurrentHp + heal;
-                if (character.CurrentHp > character.MaxHp)
+                character.currentHp = character.currentHp + heal;
+                if (character.currentHp > character.maxHp)
                 {
-                    character.CurrentHp = character.MaxHp;
+                    character.currentHp = character.maxHp;
                 }
             }
             return GenerateTempList();
@@ -80,7 +80,7 @@ namespace DnDClient
             {
                 if (!combatList[i].PC)
                 {
-                    combatList[i].Initiative = rand.Next(0, 20) + combatList[i].InitiativeBonus;
+                    combatList[i].initiative = rand.Next(0, 20) + combatList[i].initiativeBonus;
                 }
             }
             return GenerateTempList();
@@ -90,14 +90,14 @@ namespace DnDClient
         {
             if (index >= 0)
             {
-                combatList[index].Initiative = initiative;
+                combatList[index].initiative = initiative;
             }
             return GenerateTempList();
         }
 
         private List<Character> GenerateTempList()
         {
-            combatList = combatList.OrderByDescending(o => o.Initiative).ToList();
+            combatList = combatList.OrderByDescending(o => o.initiative).ToList();
             List<Character> temp = new List<Character>();
             for (int i = 0; i < combatList.Count; i++)
             {
@@ -118,17 +118,45 @@ namespace DnDClient
 
             return new Character
             {
-                Id = character.Id,
-                Name = character.Name,
-                MaxHp = character.MaxHp,
+                id = character.id,
+                name = character.name,
+                maxHp = character.maxHp,
                 AC = character.AC,
-                InitiativeBonus = character.InitiativeBonus,
+                initiativeBonus = character.initiativeBonus,
                 PC = character.PC,
-                Type = character.Type,
+                type = character.type,
                 CR = character.CR,
-                Initiative = character.Initiative,
-                CurrentHp = character.CurrentHp
+                initiative = character.initiative,
+                currentHp = character.currentHp
             };
+        }
+
+        public Boolean AddToDatabase(String[] values)
+        {
+            if (values[4].ToUpper().Equals("Y"))
+            {
+                values[4] = "1";
+            } 
+            else if (values[4].ToUpper().Equals("N"))
+            {
+                values[4] = "0";
+            }
+            else
+            {
+                return false;
+            }
+
+            string name = values[0];
+            int maxHp = Convert.ToInt32(values[1]);
+            int AC = Convert.ToInt32(values[2]);
+            int initiativeBonus = Convert.ToInt32(values[3]);
+            bool PC = Convert.ToBoolean(Convert.ToInt32(values[4]));
+            string type = values[5];
+            float CR = Convert.ToSingle(values[1]);
+
+            Character character = new Character(name, maxHp, AC, initiativeBonus, PC, type, CR);
+
+            return dbAccess.InsertInto(character);
         }
     }
 }

@@ -104,5 +104,27 @@ namespace DnDClient
         {
            
         }
+
+        private void DBACTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String[] values = new String[7];
+            values[0] = DBNameTextBox.Text;
+            values[1] = DBMaxHpTextBox.Text;
+            values[2] = DBACTextBox.Text;
+            values[3] = DBInitiativeTextBox.Text;
+            values[4] = DBPCTextBox.Text;
+            values[5] = DBTypeTextBox.Text;
+            values[6] = DBCRTextBox.Text;
+
+           if (!controller.AddToDatabase(values))
+            {
+                MessageBox.Show("Invalid input");
+            }
+        }
     }
 }
