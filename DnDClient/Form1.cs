@@ -26,19 +26,10 @@ namespace DnDClient
 
         private void RefreshEncounterListBox(List<Character> characters)
         {
-            var indexes = EncounterListBox.SelectedIndices;
-            List<int> test = new List<int>();
-            foreach(int i in indexes)
-            {
-                test.Add(i);
-            }
+            var index = EncounterListBox.SelectedIndex;
             EncounterListBox.DataSource = characters;
             EncounterListBox.DisplayMember = "CombatInfo";
-            EncounterListBox.SetSelected(0, false);
-            foreach (int i in test)
-            {
-                EncounterListBox.SetSelected(i, true);
-            }
+            EncounterListBox.SelectedIndex = index;
         }
 
 
@@ -57,7 +48,8 @@ namespace DnDClient
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-                RefreshEncounterListBox(controller.RemoveFromCombatList(EncounterListBox.SelectedIndex));
+            var selectedItems = EncounterListBox.SelectedIndices.GetEnumerator();
+            RefreshEncounterListBox(controller.RemoveFromCombatList(selectedItems));
         }
 
         private void DamageButton_Click(object sender, EventArgs e)

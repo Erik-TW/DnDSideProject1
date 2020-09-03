@@ -40,11 +40,17 @@ namespace DnDClient
             return GenerateTempList();
         }
 
-        public List<Character> RemoveFromCombatList(int characterIndex)
+        public List<Character> RemoveFromCombatList(IEnumerator selectedItems)
         {
-            if (characterIndex >= 0)
+            List<int> temp = new List<int>();
+            while(selectedItems.MoveNext())
             {
-                combatList.RemoveAt(characterIndex);
+                temp.Add((int)selectedItems.Current);
+            }
+
+            for(int i = temp.Count - 1; i >= 0; i--)
+            {
+                combatList.RemoveAt(temp[i]);
             }
             return GenerateTempList();
         }
