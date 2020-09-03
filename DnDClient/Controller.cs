@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -48,26 +49,25 @@ namespace DnDClient
             return GenerateTempList();
         }
 
-        public List<Character> DealDamage(int characterIndex, int damage)
+        public List<Character> DealDamage(IEnumerator selectedItems, int damage)
         {
-            if (characterIndex >= 0)
+            while(selectedItems.MoveNext())
             {
-                Character character = combatList[characterIndex];
-                int currentHp = character.currentHp - damage;
-                character.currentHp = currentHp;
+                var selectedItem = (Character)selectedItems.Current;
+                selectedItem.currentHp -= damage;
             }
             return GenerateTempList();
         }
 
-        public List<Character> HealCharacter(int characterIndex, int heal)
+        public List<Character> HealCharacter(IEnumerator selectedItems, int heal)
         {
-            if (characterIndex >= 0)
+            while (selectedItems.MoveNext())
             {
-                Character character = combatList[characterIndex];
-                character.currentHp = character.currentHp + heal;
-                if (character.currentHp > character.maxHp)
+                var selectedItem = (Character)selectedItems.Current;
+                selectedItem.currentHp += heal;
+                if(selectedItem.currentHp > selectedItem.maxHp)
                 {
-                    character.currentHp = character.maxHp;
+                    selectedItem.currentHp = selectedItem.maxHp;
                 }
             }
             return GenerateTempList();
@@ -86,11 +86,13 @@ namespace DnDClient
             return GenerateTempList();
         }
 
-        public List<Character> SetInitiative(int index, int initiative)
+        public List<Character> SetInitiative(IEnumerator selectedItems, int initiative)
         {
-            if (index >= 0)
+            while (selectedItems.MoveNext())
             {
-                combatList[index].initiative = initiative;
+                var selectedItem = (Character)selectedItems.Current;
+                selectedItem.initiative = initiative;
+                
             }
             return GenerateTempList();
         }

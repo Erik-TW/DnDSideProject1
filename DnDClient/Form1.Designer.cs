@@ -44,6 +44,8 @@
             this.searchTab = new System.Windows.Forms.TabPage();
             this.SearchListBox = new System.Windows.Forms.ListBox();
             this.addTab = new System.Windows.Forms.TabPage();
+            this.AddToDBButton = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
             this.DBCRTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.DBTypeTextBox = new System.Windows.Forms.TextBox();
@@ -57,8 +59,6 @@
             this.DBMaxHpTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.DBNameTextBox = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.AddToDBButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.searchTab.SuspendLayout();
             this.addTab.SuspendLayout();
@@ -71,6 +71,7 @@
             this.EncounterListBox.ItemHeight = 25;
             this.EncounterListBox.Location = new System.Drawing.Point(12, 157);
             this.EncounterListBox.Name = "EncounterListBox";
+            this.EncounterListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.EncounterListBox.Size = new System.Drawing.Size(762, 179);
             this.EncounterListBox.TabIndex = 0;
             // 
@@ -234,6 +235,25 @@
             this.addTab.Text = "Add";
             this.addTab.UseVisualStyleBackColor = true;
             // 
+            // AddToDBButton
+            // 
+            this.AddToDBButton.Location = new System.Drawing.Point(330, 88);
+            this.AddToDBButton.Name = "AddToDBButton";
+            this.AddToDBButton.Size = new System.Drawing.Size(75, 23);
+            this.AddToDBButton.TabIndex = 14;
+            this.AddToDBButton.Text = "Add";
+            this.AddToDBButton.UseVisualStyleBackColor = true;
+            this.AddToDBButton.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(675, 44);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(22, 15);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "CR";
+            // 
             // DBCRTextBox
             // 
             this.DBCRTextBox.Location = new System.Drawing.Point(639, 18);
@@ -337,25 +357,6 @@
             this.DBNameTextBox.Name = "DBNameTextBox";
             this.DBNameTextBox.Size = new System.Drawing.Size(100, 23);
             this.DBNameTextBox.TabIndex = 0;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(675, 44);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(22, 15);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "CR";
-            // 
-            // AddToDBButton
-            // 
-            this.AddToDBButton.Location = new System.Drawing.Point(330, 88);
-            this.AddToDBButton.Name = "AddToDBButton";
-            this.AddToDBButton.Size = new System.Drawing.Size(75, 23);
-            this.AddToDBButton.TabIndex = 14;
-            this.AddToDBButton.Text = "Add";
-            this.AddToDBButton.UseVisualStyleBackColor = true;
-            this.AddToDBButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
