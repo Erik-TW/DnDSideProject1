@@ -152,7 +152,7 @@ namespace DnDClient
             int initiativeBonus = Convert.ToInt32(values[3]);
             bool PC = Convert.ToBoolean(Convert.ToInt32(values[4]));
             string type = values[5];
-            float CR = Convert.ToSingle(values[1]);
+            float CR = Convert.ToSingle(values[6]);
 
             Character character = new Character(name, maxHp, AC, initiativeBonus, PC, type, CR);
 

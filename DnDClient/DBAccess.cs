@@ -32,7 +32,6 @@ namespace DnDClient
             } catch (Exception e)
             {
                 return false;
-  
             }
         }
     }
