@@ -8,4 +8,5 @@
     [PC] TINYINT NOT NULL, 
     [Type] NVARCHAR(50) NULL, 
     [CR] FLOAT NULL 
+    CONSTRAINT AK_Name UNIQUE(Name)
 )
