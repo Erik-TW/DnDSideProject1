@@ -64,7 +64,5 @@ namespace DnDClient
         {
             get { return $"{ name } Max HP: { maxHp } AC: { AC } Initiative: { initiativeBonus} PC: {PC} Type: { type } CR: { CR } "; }
         }
-
-
     }
 }

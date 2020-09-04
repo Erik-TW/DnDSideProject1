@@ -14,9 +14,12 @@ namespace DnDClient
     {
         Controller controller = new Controller();
         List<Character> monsters = new List<Character>();
+        List<Character> encounterList = new List<Character>();
         public Form1()
         {
             InitializeComponent();
+            EncounterListBox.DrawMode = DrawMode.OwnerDrawFixed;
+            EncounterListBox.DrawItem += new DrawItemEventHandler(encounterListBox_DrawItem);
         }
         private void RefreshSearchListBox()
         {
@@ -39,7 +42,6 @@ namespace DnDClient
                 EncounterListBox.SetSelected(0, false);
             }
 
-
             List<Character> selectedPostRepaint = new List<Character>();
             foreach (Character c in EncounterListBox.Items)
             {
@@ -50,6 +52,7 @@ namespace DnDClient
             {
                 EncounterListBox.SetSelected(i, true);
             }
+            encounterList = characters;
         }
 
 
@@ -150,5 +153,40 @@ namespace DnDClient
                 MessageBox.Show("Invalid input");
             }
         }
+        private void encounterListBox_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            Graphics g = e.Graphics;
+
+            if (encounterList.Count > 0)
+            {
+                for (int i = 0; i < encounterList.Count; i++)
+                {
+                    int percentage = (encounterList[i].currentHp * 200 + encounterList[i].maxHp) / (encounterList[i].maxHp * 2);
+
+
+                    if (percentage >= 75)
+                    {
+                        g.FillRectangle(new SolidBrush(Color.Green), e.Bounds);
+                    }
+                    else if (percentage < 75 && percentage >= 50)
+                    {
+                        g.FillRectangle(new SolidBrush(Color.Yellow), e.Bounds);
+                    }
+                    else if (percentage < 50 && percentage >= 25)
+                    {
+                        g.FillRectangle(new SolidBrush(Color.Orange), e.Bounds);
+                    }
+                    else if (percentage < 25)
+                    {
+                        g.FillRectangle(new SolidBrush(Color.Red), e.Bounds);
+                    }
+                    g.DrawString(encounterList[i].CombatInfo, e.Font, new SolidBrush(e.ForeColor), new PointF(e.Bounds.X, e.Bounds.Y))
+                    e.DrawFocusRectangle();
+
+                }
+            }
+        }
+
     }
 }
