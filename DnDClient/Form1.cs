@@ -181,10 +181,10 @@ namespace DnDClient
                     {
                         g.FillRectangle(new SolidBrush(Color.Red), e.Bounds);
                     }
-                    g.DrawString(encounterList[i].CombatInfo, e.Font, new SolidBrush(e.ForeColor), new PointF(e.Bounds.X, e.Bounds.Y))
-                    e.DrawFocusRectangle();
+                    g.DrawString(encounterList[i].CombatInfo, e.Font, new SolidBrush(e.ForeColor), new PointF(e.Bounds.X, e.Bounds.Y));
 
                 }
+                e.DrawFocusRectangle();
             }
         }
 
