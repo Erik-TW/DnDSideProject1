@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,47 +18,79 @@ namespace DnDClient
 
         public List<Character> AddToCombatList(Character character)
         {
-            int index = 0;
-            for(int i = 0; i < combatList.Count; i++)
+            if (character != null)
             {
-                if(combatList[i].Id == character.Id)
+                var tempChar = CopyCharacter(character);
+                int index = 0;
+                for (int i = 0; i < combatList.Count; i++)
                 {
-                    if(index < combatList[i].Index)
+                    if (combatList[i].id == tempChar.id)
                     {
-                        index = combatList[i].Index;
+                        if (index < combatList[i].Index)
+                        {
+                            index = combatList[i].Index;
+                        }
                     }
                 }
+                index++;
+                tempChar.Index = index;
+                combatList.Add(tempChar);
+                tempChar.currentHp = tempChar.maxHp;
             }
-            index++; 
-            character.Index = index;
-            combatList.Add(character);
-            character.CurrentHp = character.MaxHp;
             return GenerateTempList();
         }
 
-        public List<Character> RemoveFromCombatList(int characterIndex)
+        public List<Character> RemoveFromCombatList(IEnumerator selectedItems)
         {
-            combatList.RemoveAt(characterIndex);
-            return GenerateTempList();
-        }
-
-        public List<Character> DealDamage(int characterIndex, int damage)
-        {
-            Character character = combatList[characterIndex];
-            int currentHp = character.CurrentHp - damage;
-            character.CurrentHp = currentHp;
-            return GenerateTempList();
-        }
-
-        public List<Character> HealCharacter(int characterIndex, int heal)
-        {
-            Character character = combatList[characterIndex];
-            character.CurrentHp = character.CurrentHp + heal;
-            if (character.CurrentHp > character.MaxHp)
+            List<int> temp = new List<int>();
+            while(selectedItems.MoveNext())
             {
-                character.CurrentHp = character.MaxHp;
+                temp.Add((int)selectedItems.Current);
             }
 
+            for(int i = temp.Count - 1; i >= 0; i--)
+            {
+                combatList.RemoveAt(temp[i]);
+            }
+            return GenerateTempList();
+        }
+
+        public List<int> CompareSelectedItems(List<Character> selectedPreRepaint, List<Character> selectedPostRepaint)
+        {
+            List<int> selectedIndexes = new List<int>();
+
+            for(int i = 0; i < selectedPostRepaint.Count; i++)
+            {
+                if(selectedPreRepaint.Contains(selectedPostRepaint[i])) {
+                    selectedIndexes.Add(i);
+                }
+            }
+
+            return selectedIndexes;
+            
+        }
+
+        public List<Character> DealDamage(IEnumerator selectedItems, int damage)
+        {
+            while(selectedItems.MoveNext())
+            {
+                var selectedItem = (Character)selectedItems.Current;
+                selectedItem.currentHp -= damage;
+            }
+            return GenerateTempList();
+        }
+
+        public List<Character> HealCharacter(IEnumerator selectedItems, int heal)
+        {
+            while (selectedItems.MoveNext())
+            {
+                var selectedItem = (Character)selectedItems.Current;
+                selectedItem.currentHp += heal;
+                if(selectedItem.currentHp > selectedItem.maxHp)
+                {
+                    selectedItem.currentHp = selectedItem.maxHp;
+                }
+            }
             return GenerateTempList();
         }
 
@@ -68,21 +101,26 @@ namespace DnDClient
             {
                 if (!combatList[i].PC)
                 {
-                    combatList[i].Initiative = rand.Next(0, 20) + combatList[i].InitiativeBonus;
+                    combatList[i].initiative = rand.Next(0, 20) + combatList[i].initiativeBonus;
                 }
             }
             return GenerateTempList();
         }
 
-        public List<Character> SetInitiative(int index, int initiative)
+        public List<Character> SetInitiative(IEnumerator selectedItems, int initiative)
         {
-            combatList[index].Initiative = initiative;
+            while (selectedItems.MoveNext())
+            {
+                var selectedItem = (Character)selectedItems.Current;
+                selectedItem.initiative = initiative;
+                
+            }
             return GenerateTempList();
         }
 
         private List<Character> GenerateTempList()
         {
-            combatList = combatList.OrderByDescending(o => o.Initiative).ToList();
+            combatList = combatList.OrderByDescending(o => o.initiative).ToList();
             List<Character> temp = new List<Character>();
             for (int i = 0; i < combatList.Count; i++)
             {
@@ -95,6 +133,53 @@ namespace DnDClient
         {
             combatList.Clear();
             return GenerateTempList();
+        }
+
+        private Character CopyCharacter(Character character)
+        {
+            Character newchar = new Character();
+
+            return new Character
+            {
+                id = character.id,
+                name = character.name,
+                maxHp = character.maxHp,
+                AC = character.AC,
+                initiativeBonus = character.initiativeBonus,
+                PC = character.PC,
+                type = character.type,
+                CR = character.CR,
+                initiative = character.initiative,
+                currentHp = character.currentHp
+            };
+        }
+
+        public Boolean AddToDatabase(String[] values)
+        {
+            if (values[4].ToUpper().Equals("Y"))
+            {
+                values[4] = "1";
+            } 
+            else if (values[4].ToUpper().Equals("N"))
+            {
+                values[4] = "0";
+            }
+            else
+            {
+                return false;
+            }
+
+            string name = values[0];
+            int maxHp = Convert.ToInt32(values[1]);
+            int AC = Convert.ToInt32(values[2]);
+            int initiativeBonus = Convert.ToInt32(values[3]);
+            bool PC = Convert.ToBoolean(Convert.ToInt32(values[4]));
+            string type = values[5];
+            float CR = Convert.ToSingle(values[6]);
+
+            Character character = new Character(name, maxHp, AC, initiativeBonus, PC, type, CR);
+
+            return dbAccess.InsertInto(character);
         }
     }
 }

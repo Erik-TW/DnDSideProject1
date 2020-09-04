@@ -26,8 +26,30 @@ namespace DnDClient
 
         private void RefreshEncounterListBox(List<Character> characters)
         {
+            List<Character> selectedPreRepaint = new List<Character>();
+            foreach(Character c in EncounterListBox.SelectedItems)
+            {
+                selectedPreRepaint.Add(c);
+            }
+
             EncounterListBox.DataSource = characters;
             EncounterListBox.DisplayMember = "CombatInfo";
+            if(EncounterListBox.Items.Count > 0)
+            {
+                EncounterListBox.SetSelected(0, false);
+            }
+
+
+            List<Character> selectedPostRepaint = new List<Character>();
+            foreach (Character c in EncounterListBox.Items)
+            {
+                selectedPostRepaint.Add(c);
+            }
+           List<int> selected = controller.CompareSelectedItems(selectedPreRepaint, selectedPostRepaint);
+            foreach(int i in selected)
+            {
+                EncounterListBox.SetSelected(i, true);
+            }
         }
 
 
@@ -40,43 +62,42 @@ namespace DnDClient
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            Character markedCharacter = (Character)SearchListBox.SelectedItem;
-            RefreshEncounterListBox(controller.AddToCombatList(CopyCharacter(markedCharacter)));
+                Character markedCharacter = (Character)SearchListBox.SelectedItem;
+                RefreshEncounterListBox(controller.AddToCombatList(markedCharacter));
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            RefreshEncounterListBox(controller.RemoveFromCombatList(EncounterListBox.SelectedIndex));
-
+            var selectedItems = EncounterListBox.SelectedIndices.GetEnumerator();
+            RefreshEncounterListBox(controller.RemoveFromCombatList(selectedItems));
         }
 
         private void DamageButton_Click(object sender, EventArgs e)
-
         {
-            int damage = 0;
-            if (Int32.TryParse(ModifierTextBox.Text, out damage))
-            {
-                RefreshEncounterListBox(controller.DealDamage(EncounterListBox.SelectedIndex, damage));
-            }
-            else
-            {
-                MessageBox.Show("Invalid input");
-            }
-
-           
+            var selectedItems = EncounterListBox.SelectedItems.GetEnumerator();
+                int damage = 0;
+                if (Int32.TryParse(ModifierTextBox.Text, out damage))
+                {
+                    RefreshEncounterListBox(controller.DealDamage(selectedItems, damage));
+                }
+                else
+                {
+                    MessageBox.Show("Invalid input");
+                }
         }
 
         private void HealButton_Click(object sender, EventArgs e)
         {
+            var selectedItems = EncounterListBox.SelectedItems.GetEnumerator();
             int heal = 0;
-            if (Int32.TryParse(ModifierTextBox.Text, out heal))
-            {
-                RefreshEncounterListBox(controller.HealCharacter(EncounterListBox.SelectedIndex, heal));
-            }
-            else
-            {
-                MessageBox.Show("Invalid input");
-            }
+                if (Int32.TryParse(ModifierTextBox.Text, out heal))
+                {
+                    RefreshEncounterListBox(controller.HealCharacter(selectedItems, heal));
+                }
+                else
+                {
+                    MessageBox.Show("Invalid input");
+                }
         }
 
         private void RollInitiativeButton_Click(object sender, EventArgs e)
@@ -85,50 +106,49 @@ namespace DnDClient
 
         }
 
-        private Character CopyCharacter(Character character) 
-        {
-            Character newchar = new Character();
-
-            return new Character
-            {
-                Id = character.Id,
-                Name = character.Name,
-                MaxHp = character.MaxHp,
-                AC = character.AC,
-                InitiativeBonus = character.InitiativeBonus,
-                PC = character.PC,
-                Type = character.Type,
-                CR = character.CR,
-                Initiative = character.Initiative,
-                CurrentHp = character.CurrentHp
-            };
-        }
-
         private void InitiativeButton_Click(object sender, EventArgs e)
         {
-
-
+            var selectedItems = EncounterListBox.SelectedItems.GetEnumerator();
             int initiative = 0;
-            if (Int32.TryParse(ModifierTextBox.Text, out initiative))
-            {
-                RefreshEncounterListBox(controller.SetInitiative(EncounterListBox.SelectedIndex, initiative));
-            }
-            else
-            {
-                MessageBox.Show("Invalid input");
-            }
-
-
+                if (Int32.TryParse(ModifierTextBox.Text, out initiative))
+                {
+                    RefreshEncounterListBox(controller.SetInitiative(selectedItems, initiative));
+                }
+                else
+                {
+                    MessageBox.Show("Invalid input");
+                }
         }
         private void ResetButton_Click(object sender, EventArgs e)
         {
             RefreshEncounterListBox(controller.ResetEncounter());
         }
 
-
         private void Form1_Load(object sender, EventArgs e)
         {
+           
+        }
 
+        private void DBACTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String[] values = new String[7];
+            values[0] = DBNameTextBox.Text;
+            values[1] = DBMaxHpTextBox.Text;
+            values[2] = DBACTextBox.Text;
+            values[3] = DBInitiativeTextBox.Text;
+            values[4] = DBPCTextBox.Text;
+            values[5] = DBTypeTextBox.Text;
+            values[6] = DBCRTextBox.Text;
+
+           if (!controller.AddToDatabase(values))
+            {
+                MessageBox.Show("Invalid input");
+            }
         }
     }
 }

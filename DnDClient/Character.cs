@@ -1,24 +1,44 @@
-﻿using System;
+﻿using Dapper.Contrib.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DnDClient
 {
+    [Table("Character")]
     class Character
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int MaxHp{ get; set; }
+        [Key]
+        public int id { get; set; }
+        public string name { get; set; }
+        public int maxHp{ get; set; }
         public int AC { get; set; }
-        public int InitiativeBonus { get; set; }
+        public int initiativeBonus { get; set; }
         public bool PC { get; set; }
-        public string Type { get; set; }
+        public string type { get; set; }
         public float CR { get; set; }
-        public int Initiative { get; set; }
-        public int CurrentHp { get; set; }
-
+        [Write(false)]
+        public int initiative { get; set; }
+        [Write(false)]
+        public int currentHp { get; set; }
         private int _Index = 1;
 
+        public Character (String name, int maxHp, int AC, int initiativeBonus, bool PC, string type, float CR)
+        {
+            this.name = name;
+            this.maxHp = maxHp;
+            this.AC = AC;
+            this.initiativeBonus = initiativeBonus;
+            this.PC = PC;
+            this.type = type;
+            this.CR = CR;
+        }
+
+        public Character()
+        {
+
+        }
+        [Write(false)]
         public int Index
         {
             get { return _Index; }
@@ -27,22 +47,22 @@ namespace DnDClient
 
 
 
-
+        [Write(false)]
         public string CombatInfo
         {
             get 
             { 
                 if(PC)
                 {
-                    return $"{ Name } HP: { CurrentHp } AC: { AC } Initiative: { Initiative}";
+                    return $"{ name } HP: { currentHp } AC: { AC } Initiative: { initiative}";
                 }
-                return $"{ Name } {Index} HP: { CurrentHp } AC: { AC } Initiative: { Initiative}";
+                return $"{ name } {Index} HP: { currentHp } AC: { AC } Initiative: { initiative}";
             }
         }
-
+        [Write(false)]
         public string SearchInfo
         {
-            get { return $"{ Name } Max HP: { MaxHp } AC: { AC } Initiative: { InitiativeBonus} PC: {PC} Type: { Type } CR: { CR } "; }
+            get { return $"{ name } Max HP: { maxHp } AC: { AC } Initiative: { initiativeBonus} PC: {PC} Type: { type } CR: { CR } "; }
         }
 
 
