@@ -17,9 +17,7 @@ namespace DnDClient
         List<Character> encounterList = new List<Character>();
         public Form1()
         {
-            InitializeComponent();
-            EncounterListBox.DrawMode = DrawMode.OwnerDrawFixed;
-            EncounterListBox.DrawItem += new DrawItemEventHandler(encounterListBox_DrawItem);
+            InitializeComponent();      
         }
         private void RefreshSearchListBox()
         {
